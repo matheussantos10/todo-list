@@ -1,14 +1,14 @@
+import Swal from "sweetalert2";
 import { useState } from "react";
+
 import { List } from "./List"
 import { Form } from "./Form";
-import Swal from "sweetalert2";
 
 export const Content = () => {
 
     const [descriptionTask, setDescriptionTask] = useState('')
     const [timeTask, setTimeTask] = useState('')
     const [listTask, setListTask] = useState([])
-
 
     const changeDecription = (e) => {
         setDescriptionTask(e.target.value)
@@ -27,30 +27,18 @@ export const Content = () => {
                 background: "#212121",
                 color: "#fff",
                 confirmButtonColor: "#7d7d7d",
-                reverseButtons: true
             })
         } else {
-
             const taskToAdd = {
                 id: listTask.length + 1,
                 concluded: false,
                 time: timeTask,
                 description: descriptionTask
             }
-
             setListTask(currentList => [...currentList, taskToAdd])
             setDescriptionTask('')
             setTimeTask('')
         }
-    }
-
-    const editTask = async (task) => {
-        console.log("editando")
-        console.log(task)
-
-
-
-
     }
 
     const deleteTask = (id) => {
@@ -61,7 +49,6 @@ export const Content = () => {
     }
 
     const deleteAllTasks = async () => {
-
         const { value: confirm } = await Swal.fire({
             theme: 'dark',
             title: "Excluir tudo?",
@@ -74,12 +61,10 @@ export const Content = () => {
             confirmButtonColor: "#4d973a",
             reverseButtons: true
         })
-
         if (confirm) {
             setListTask([])
         }
     }
-
 
     return (
         <section className="h-full relative mt-5">
@@ -96,7 +81,6 @@ export const Content = () => {
             <List
                 listTask={listTask}
                 deleteTask={deleteTask}
-                editTask={editTask}
             />
 
             <div className="absolute bottom-5 right-5">
@@ -107,7 +91,6 @@ export const Content = () => {
                     Limpar tudo
                 </button>
             </div>
-
         </section >
     )
 }

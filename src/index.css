@@ -2,13 +2,14 @@
 
 :root {
     margin: 0;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw;
-    height: 100vh;
+    background: rgb(36, 36, 36);
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-    background-color: #141414;
+    background: linear-gradient(180deg, rgba(36, 36, 36, 1) 0%, rgba(38, 38, 38, 1) 50%, rgba(32, 32, 32, 1) 100%);
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;

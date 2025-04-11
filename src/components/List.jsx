@@ -2,7 +2,7 @@ import { ItemList } from "./ItemList"
 
 export const List = (props) => {
 
-    const { listTask, deleteTask, editTask } = props
+    const { listTask, deleteTask } = props
 
     return (
         <div
@@ -15,15 +15,19 @@ export const List = (props) => {
                 dark:[&::-webkit-scrollbar-track]:bg-neutral-700
                 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
         >
-            {listTask.map(task => {
-                return (
-                    <ItemList
-                        task={task}
-                        deleteTask={deleteTask}
-                        editTask={editTask}
-                    />
-                )
-            })}
+            {listTask.length ?
+                listTask.map(task => {
+                    return (
+                        <ItemList
+                            task={task}
+                            deleteTask={deleteTask}
+                        />
+                    )
+                }) :
+                <span className="text-[#e2e2e29a] text-md text-center m-3 underline">
+                    Nenhuma tarefa Adicionada
+                </span>
+            }
         </div>
     )
 }

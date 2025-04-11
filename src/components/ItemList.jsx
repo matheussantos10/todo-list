@@ -1,117 +1,43 @@
-import { Checkbox } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import CloseIcon from '@mui/icons-material/Close';
-import CheckIcon from '@mui/icons-material/Check';
+import { useState } from "react";
 
 export const ItemList = (props) => {
 
     const { task, deleteTask } = props
 
-    const clickEditTask = (task) => {
+    const [isChecked, setIsCheked] = useState(task.concluded)
 
-        console.log(task)
-
-        const containerTask = document.querySelector("#container_task")
-        const containerEdit = document.querySelector("#container_edit")
-
-        containerTask.classList.remove("flex")
-        containerTask.classList.add("hidden")
-        containerEdit.classList.remove("hidden")
-        containerEdit.classList.add("flex")
-    }
-
-    const cancelEdit = () => {
-
-        const containerTask = document.querySelector("#container_task")
-        const containerEdit = document.querySelector("#container_edit")
-
-        containerTask.classList.add("flex")
-        containerTask.classList.remove("hidden")
-        containerEdit.classList.add("hidden")
-        containerEdit.classList.remove("flex")
+    const clickCheck = () => {
+        setIsCheked(!isChecked)
     }
 
     return (
-        <section className="p-1">
-            <div
-                id="container_task"
-                className="flex gap-2 text-white items-center relative border-b border-b-[#2F2F2F]"
-            >
-                <span id="checkbox_task">
-                    <Checkbox
-                        size="small"
-                        className="p-0"
-                    />
-                </span>
+        <section className="flex p-3 gap-3 text-white items-center relative border-b border-b-[#2F2F2F]">
 
-                <time id="time_task"> {task.time} </time>
+            <input
+                type="checkbox"
+                className="size-4"
+                checked={isChecked}
+                onClick={clickCheck}
+            />
 
-                <span id="description_task"> {task.description} </span>
+            <div className={`text-xl flex gap-3 duration-500 ${isChecked && 'line-through text-[#616161] '}`}>
+                <time> {task.time} </time>
 
-                <div className="absolute right-1 flex gap-3">
-                    <button
-                        className="cursor-pointer
-                        hover:scale-120
-                        ease-out 
-                        duration-300"
-                        onClick={() => clickEditTask(task)}
-                    >
-                        <EditIcon />
-                    </button>
-                    <button
-                        className="cursor-pointer 
-                        hover:scale-120
-                        ease-out 
-                        duration-300"
-                        onClick={() => deleteTask(task.id)}
-                    >
-                        <DeleteIcon />
-                    </button>
-                </div>
+                <span> {task.description} </span>
             </div>
 
-            <div
-                id="container_edit"
-                className="hidden gap-3 text-white items-center relative"
-            >
-                <input
-                    id="input_time"
-                    className="rounded-lg px-3 bg-[#393939]"
-                    type="time"
-                // value={timeEdit}
-                // onChange={editTime}
-                />
-
-                <input
-                    id="input_text"
-                    className="rounded-lg px-3 w-full font-medium bg-[#393939]"
-                    type="text"
-                // value={descriptionEdit}
-                // onChange={editDescription}
-                />
-
-                <div className="absolute right-1 flex gap-3">
-                    <button
-                        className="cursor-pointer
-                        hover:scale-120
-                        ease-out 
-                        duration-300"
-                        onClick={cancelEdit}
-                    >
-                        <CloseIcon />
-                    </button>
-                    <button
-                        className="cursor-pointer 
-                        hover:scale-120
-                        ease-out 
-                        duration-300"
-                    // onClick={() => deleteTask(task.id)}
-                    >
-                        <CheckIcon />
-                    </button>
-                </div>
+            <div className="absolute right-2 flex">
+                <button
+                    className="cursor-pointer 
+                    hover:scale-120
+                    ease-out 
+                    duration-300"
+                    onClick={() => deleteTask(task.id)}
+                >
+                    <DeleteIcon />
+                </button>
             </div>
-        </section>
+        </section >
     )
 }

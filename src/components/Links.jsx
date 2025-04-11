@@ -7,7 +7,7 @@ export const Links = () => {
         <div className='flex gap-5 absolute right-10 top-5 text-white'>
 
             <a href="https://www.linkedin.com/in/matheussantos10/" target="_blank">
-                <span className='flex gap-1 cursor-pointer 
+                <span className='flex gap-1 cursor-pointer
                 hover:scale-110
                 ease-out 
                 duration-300'
@@ -25,7 +25,6 @@ export const Links = () => {
                     <GitHubIcon />
                     GitHub
                 </span>
-
             </a>
         </div>
     )
