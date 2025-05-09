@@ -5,7 +5,7 @@ Site para rastreamento de tarefas!
 
 <p align="center">
   <h2>🏠 Home </h2>
-  <img src="./public/img/readme_banner.png"/>
+  <img src="./public/readme_banner.png"/>
 </p>
 
 ## 🚀 Tecnologias
